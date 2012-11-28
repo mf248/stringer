@@ -16,6 +16,7 @@ describe User do
   it { should respond_to(:password_confirmation) }
   it { should respond_to(:remember_token) }
   it { should respond_to(:admin) }
+  it { should respond_to(:cards) }
   it { should respond_to(:authenticate) }
 
   it { should be_valid }
@@ -114,6 +115,26 @@ describe User do
 
    	 it { should_not == user_for_invalid_password }
    	 specify { user_for_invalid_password.should be_false }
+    end
+  end
+
+   describe "card associations" do
+
+    before { @user.save }
+    let!(:older_card) do 
+      FactoryGirl.create(:card, user: @user, created_at: 1.day.ago)
+    end
+    let!(:newer_card) do
+      FactoryGirl.create(:card, user: @user, created_at: 1.hour.ago)
+    end
+
+    it "should destroy associated cards" do
+      cards = @user.cards.dup
+      @user.destroy
+      cards.should_not be_empty
+      cards.each do |card|
+        Card.find_by_id(card.id).should be_nil
+      end
     end
   end
  

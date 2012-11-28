@@ -9,4 +9,10 @@ FactoryGirl.define do
       admin true
     end
   end
+
+  factory :card do
+  	subject "Lorem ipsum"
+    content "Lorem ipsum"
+    user
+  end
 end
