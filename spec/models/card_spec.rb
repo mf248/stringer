@@ -26,4 +26,20 @@ describe Card do
       end.to raise_error(ActiveModel::MassAssignmentSecurity::Error)
     end    
   end
+
+
+  describe "with blank subject" do
+    before { @card.subject = " " }
+    it { should_not be_valid }
+  end
+
+  describe "with content that is too long" do
+    before { @card.subject = "a" * 41 }
+    it { should_not be_valid }
+  end
+
+  describe "with content that is too long" do
+    before { @card.content = "a" * 501 }
+    it { should_not be_valid }
+  end
 end
