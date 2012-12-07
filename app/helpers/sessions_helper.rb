@@ -13,7 +13,7 @@ module SessionsHelper
    	 @current_user ||= User.find_by_remember_token(cookies[:remember_token])
   end
 
-  	def signed_in?
+   	def signed_in?
   		!current_user.nil?
   	end
 
@@ -41,4 +41,7 @@ module SessionsHelper
   def store_location
     session[:return_to] = request.url
   end
+
+  
+    
 end

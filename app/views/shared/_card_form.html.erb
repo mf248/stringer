@@ -1,0 +1,12 @@
+<%= form_for(@card) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+  	<%= f.text_area :subject, placeholder: "New Microthread Subject" %>
+  </div>
+
+  <div class="field">
+    <%= f.text_area :content, placeholder: "Content..." %>
+  </div>
+  
+  <%= f.submit "Post", class: "btn btn-large btn-primary" %>
+<% end %>

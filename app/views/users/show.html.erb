@@ -8,4 +8,13 @@
       </h1>
     </section>
   </aside>
+  <div class="span8">
+    <% if @user.cards.first.slots.any? %>
+      <h3>Microthreads (<%= @user.cards.first.slots.count %>)</h3>
+      <ol class="microposts">
+        <%= render @slots %>
+      </ol>
+      <%= will_paginate @slots %>
+    <% end %>
+  </div>
 </div>

@@ -1,0 +1,16 @@
+<li>
+  <span class="content">
+  	<%= current_user.cards.find(slot.display_card).subject %>
+  </span>
+  <span class="timestamp">
+    <%= current_user.cards.find_by_id(slot.display_card).content %>
+  </span>
+  <span class="content">
+  	World Score <%= slot.world_rank %> Self Score <%= slot.self_rank %> Friend Rank <%= slot.friend_rank %>
+  </span>
+  <% if current_user?(User.find(Card.find(slot.display_card).user_id)) %>
+    <%= link_to "delete", slot, method: :delete,
+                                     data: { confirm: "You sure?" },
+                                     title: Card.find(slot.display_card).subject %>
+  <% end %>
+</li>

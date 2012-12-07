@@ -6,6 +6,9 @@ class UsersController < ApplicationController
 
   def show
   	@user = User.find(params[:id])
+    @card = Card.find_by_user_id(@user.id)
+    @slots = @user.cards.first.slots.paginate(page: params[:page])
+    
   end
 
   def new

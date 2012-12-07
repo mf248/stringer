@@ -8,7 +8,7 @@
   <%= link_to "view my profile", current_user %>
 </span>
 <span>
-	<%= current_user.card.first.subject %>
+	<%= current_user.cards.first.subject %>
 <span>
-  <%= pluralize(current_user.cards.count -1, "Minithreads") %>
+  <%= pluralize(current_user.cards.first.slots.count, "Minithreads") %>
 </span>
